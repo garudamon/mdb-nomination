@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './styles/styles.css'
+import {useStore} from './stores';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {count, setCount} = useStore()
 
   return (
     <div className="App">
@@ -17,7 +18,7 @@ function App() {
       </div>
       <h1 className='text-sky-400'>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount()}>
           count is {count}
         </button>
         <p>
