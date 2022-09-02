@@ -1,3 +1,12 @@
+/* extend tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-orange-100;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
