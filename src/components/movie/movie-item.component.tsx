@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useStore } from "@/stores";
 import { MovieItem } from "@/stores/models";
 
-type ListItemProps = { movie: MovieItem } & React.DetailedHTMLProps<
+type ListItemProps = { movie: MovieItem, listType: 'search' | 'nomination' } & React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
   HTMLElement
 >;
@@ -50,12 +50,13 @@ const MovieItems = ({ ...props }: ListItemProps) => {
           </div>
         </dl>
         <div className="absolute top-0 right-0">
-          {indexNominated(props.movie) < 0 && (
+          {props.listType == 'search' && (
             <button
-              className="px-2 font-regular text-sm rounded-md  text-slate-900 dark:text-slate-300 dark:hover:text-teal-300 hover:text-teal-500"
+              className={`px-2 font-regular text-sm rounded-md  text-slate-900 dark:text-slate-300 dark:hover:text-teal-300 hover:text-teal-500 ${indexNominated(props.movie) > -1?'opacity-25':''}`}
               type="button"
               onClick={toggleItem}
               data-testid={`set-nominated-${props.movie.imdbID}`}
+              disabled={indexNominated(props.movie) > -1}
             >
               <svg
                 version="1.1"
@@ -78,7 +79,7 @@ const MovieItems = ({ ...props }: ListItemProps) => {
             </button>
           )}
 
-          {indexNominated(props.movie) > -1 && (
+          {props.listType == 'nomination' && (
             <button
               className="px-2 font-regular text-sm rounded-md  text-rose-300 hover:text-red-500"
               type="button"

@@ -21,7 +21,7 @@ const useStore = create<AppState>()(
         set(() => ({ itemsLoadimg: true }));
         let url = `${import.meta.env.VITE_API_URL}?apikey=${
           import.meta.env.VITE_API_KEY
-        }`;
+        }&type=movie`;
         if (get().keyword && get().keyword.trim().length > 0) {
           url += `&s=${get().keyword}`;
         }

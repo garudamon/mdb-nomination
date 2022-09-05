@@ -12,9 +12,8 @@ const Movie = () => {
         <MovieSearch />
         <MovieList layoutClass="grid-cols-1 lg:grid-cols-2">
           {items
-            .filter((o) => !nominated.find((n) => n.imdbID == o.imdbID))
             .map((movie) => (
-              <MovieItems key={movie.imdbID} movie={movie} />
+              <MovieItems key={movie.imdbID} movie={movie} listType="search" />
             ))}
         </MovieList>
       </div>
@@ -23,9 +22,10 @@ const Movie = () => {
           Nominated Movie
         </div>
         {nominated.length < 1 && <p className="p-5 text-gray-300 italic">You dont have nominated movie</p>}
+        {nominated.length >= 5 && <p className="p-5 text-white font-semibold bg-teal-400">5 movies already got nominated</p>}
         <MovieList layoutClass="grid-cols-1">
           {nominated.map((movie) => (
-            <MovieItems key={movie.imdbID} movie={movie} />
+            <MovieItems key={movie.imdbID} movie={movie} listType="nomination" />
           ))}
         </MovieList>
       </div>
